@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.urjc</groupId>
-	<artifactId>tfg</artifactId>
+	<artifactId>backTfg</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tfg</name>
 	<description>tfg</description>
