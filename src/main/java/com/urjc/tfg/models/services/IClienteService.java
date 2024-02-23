@@ -8,4 +8,12 @@ public interface IClienteService {
 
     List<Cliente> findAll();
 
+    Cliente save(Cliente cliente);
+
+    Cliente findById(Long id);
+
+    Cliente update(Cliente cliente, Long id);
+
+    void delete(Long id);
+
 }
