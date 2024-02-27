@@ -33,19 +33,12 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Override
     @Transactional
-    public Cliente update(Cliente cliente, Long id) {
-        Cliente clienteActual = findById(id);
-
-        clienteActual.setNombre(cliente.getNombre());
-        clienteActual.setApellido(cliente.getApellido());
-        clienteActual.setEmail(cliente.getEmail());
-
-        return iClienteRepository.save(clienteActual);
-    }
-
-    @Override
-    @Transactional
     public void delete(Long id) {
-        iClienteRepository.deleteById(id);
+        Cliente cliente = findById(id);
+        if (cliente != null) {
+            iClienteRepository.deleteById(id);
+        }else {
+            throw new RuntimeException();
+        }
     }
 }

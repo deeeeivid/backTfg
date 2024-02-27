@@ -12,8 +12,6 @@ public interface IClienteService {
 
     Cliente findById(Long id);
 
-    Cliente update(Cliente cliente, Long id);
-
     void delete(Long id);
 
 }
