@@ -6,6 +6,8 @@ import com.urjc.tfg.models.services.IClienteService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,12 @@ public class ClienteController {
     public List<Cliente> index() {
         return iClienteService.findAll();
     }
+
+    @GetMapping("/clientes/page/{page}")
+    public Page<Cliente> index(@PathVariable Integer page) {
+        return iClienteService.findAll(PageRequest.of(page, 4));
+    }
+
 
     @GetMapping("/clientes/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {

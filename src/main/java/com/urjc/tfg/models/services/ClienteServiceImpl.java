@@ -3,6 +3,8 @@ package com.urjc.tfg.models.services;
 import com.urjc.tfg.models.dao.IClienteRepository;
 import com.urjc.tfg.models.entity.Cliente;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +18,13 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Override
     public List<Cliente> findAll() {
-        return (List<Cliente>) iClienteRepository.findAll();
+        return iClienteRepository.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Cliente> findAll(Pageable pageable) {
+        return iClienteRepository.findAll(pageable);
     }
 
     @Override
@@ -37,7 +45,7 @@ public class ClienteServiceImpl implements IClienteService {
         Cliente cliente = findById(id);
         if (cliente != null) {
             iClienteRepository.deleteById(id);
-        }else {
+        } else {
             throw new RuntimeException();
         }
     }
