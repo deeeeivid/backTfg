@@ -3,6 +3,7 @@ package com.urjc.tfg.models.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -38,12 +39,9 @@ public class Cliente implements Serializable {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @NotNull
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @PrePersist
-    public void prePersist() {
-        createAt = new Date();
-    }
 }
