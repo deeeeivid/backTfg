@@ -12,10 +12,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -26,6 +33,8 @@ public class ClienteController {
 
     private IClienteService iClienteService;
     private IClienteRepository iClienteRepository;
+
+    private final String PATH = "C:\\Users\\david\\IdeaProjects\\spring\\backTfg\\src\\main\\resources\\uploads";
 
     @GetMapping("/clientes")
     public List<Cliente> index() {
@@ -134,6 +143,17 @@ public class ClienteController {
         Map<String, Object> response = new HashMap<>();
 
         try {
+
+            Cliente cliente = iClienteService.findById(id);
+            String nombreFotoAnterior = cliente.getFoto();
+            if (nombreFotoAnterior != null && !nombreFotoAnterior.isEmpty()) {
+                Path rutaFotoAnterior = Paths.get(PATH).resolve(nombreFotoAnterior).toAbsolutePath();
+                File archivoFotoAnterior = rutaFotoAnterior.toFile();
+                if (archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
+                    archivoFotoAnterior.delete();
+                }
+            }
+
             iClienteService.delete(id);
 
             response.put("mensaje", "El cliente se ha eliminado con éxito!");
@@ -147,7 +167,41 @@ public class ClienteController {
             response.put("mensaje", "Error: No se pudo eliminar el cliente ID: ".concat(id.toString().concat(" no existe en la bbdd")));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
+    }
 
+    @PostMapping("/clientes/upload")
+    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
+        Map<String, Object> response = new HashMap<>();
 
+        Cliente cliente = iClienteService.findById(id);
+
+        if (!archivo.isEmpty()) {
+            String nombreArchivo = UUID.randomUUID() + "_" + archivo.getOriginalFilename().replace(" ", "");
+            Path rutaArchivo = Paths.get(PATH).resolve(nombreArchivo).toAbsolutePath();
+            try {
+                Files.copy(archivo.getInputStream(), rutaArchivo);
+            } catch (IOException e) {
+                response.put("mensaje", "Error al subir la imagen " + nombreArchivo);
+                response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+                return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+            String nombreFotoAnterior = cliente.getFoto();
+            if (nombreFotoAnterior != null && !nombreFotoAnterior.isEmpty()) {
+                Path rutaFotoAnterior = Paths.get(PATH).resolve(nombreFotoAnterior).toAbsolutePath();
+                File archivoFotoAnterior = rutaFotoAnterior.toFile();
+                if (archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
+                    archivoFotoAnterior.delete();
+                }
+            }
+
+            cliente.setFoto(nombreArchivo);
+
+            iClienteService.save(cliente);
+
+            response.put("cliente", cliente);
+            response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
+        }
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }
