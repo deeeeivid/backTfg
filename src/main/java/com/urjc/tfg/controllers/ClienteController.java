@@ -3,12 +3,11 @@ package com.urjc.tfg.controllers;
 import com.urjc.tfg.models.dao.IClienteRepository;
 import com.urjc.tfg.models.entity.Cliente;
 import com.urjc.tfg.models.services.IClienteService;
+import com.urjc.tfg.services.IUploadFileService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,30 +18,23 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
+@Slf4j
 @RequestMapping("/api")
 public class ClienteController {
 
     private IClienteService iClienteService;
+    private IUploadFileService iUploadFileService;
     private IClienteRepository iClienteRepository;
-
-    private final Logger log = LoggerFactory.getLogger(ClienteController.class);
-
-    private final String PATH = "C:\\Users\\david\\IdeaProjects\\spring\\backTfg\\src\\main\\resources\\uploads";
 
     @GetMapping("/clientes")
     public List<Cliente> index() {
@@ -154,13 +146,8 @@ public class ClienteController {
 
             Cliente cliente = iClienteService.findById(id);
             String nombreFotoAnterior = cliente.getFoto();
-            if (nombreFotoAnterior != null && !nombreFotoAnterior.isEmpty()) {
-                Path rutaFotoAnterior = Paths.get(PATH).resolve(nombreFotoAnterior).toAbsolutePath();
-                File archivoFotoAnterior = rutaFotoAnterior.toFile();
-                if (archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
-                    archivoFotoAnterior.delete();
-                }
-            }
+
+            iUploadFileService.eliminar(nombreFotoAnterior);
 
             iClienteService.delete(id);
 
@@ -178,32 +165,24 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes/upload")
-    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
+    public ResponseEntity<?> upload(@RequestParam(value = "archivo") MultipartFile archivo, @RequestParam("id") Long id) {
         Map<String, Object> response = new HashMap<>();
 
         Cliente cliente = iClienteService.findById(id);
 
         if (!archivo.isEmpty()) {
-            String nombreArchivo = UUID.randomUUID() + "_" + archivo.getOriginalFilename().replace(" ", "");
-            Path rutaArchivo = Paths.get(PATH).resolve(nombreArchivo).toAbsolutePath();
-            log.info(rutaArchivo.toString());
-
+            String nombreArchivo;
             try {
-                Files.copy(archivo.getInputStream(), rutaArchivo);
+                nombreArchivo = iUploadFileService.guardar(archivo);
             } catch (IOException e) {
-                response.put("mensaje", "Error al subir la imagen " + nombreArchivo);
+                response.put("mensaje", "Error al subir la imagen ");
                 response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
                 return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
             String nombreFotoAnterior = cliente.getFoto();
-            if (nombreFotoAnterior != null && !nombreFotoAnterior.isEmpty()) {
-                Path rutaFotoAnterior = Paths.get(PATH).resolve(nombreFotoAnterior).toAbsolutePath();
-                File archivoFotoAnterior = rutaFotoAnterior.toFile();
-                if (archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
-                    archivoFotoAnterior.delete();
-                }
-            }
+
+            iUploadFileService.eliminar(nombreFotoAnterior);
 
             cliente.setFoto(nombreArchivo);
 
@@ -218,18 +197,11 @@ public class ClienteController {
     @GetMapping("/uploads/img/{nombreFoto:.+}")
     public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto) {
 
-        Path rutaArchivo = Paths.get(PATH).resolve(nombreFoto).toAbsolutePath();
-        log.info(rutaArchivo.toString());
         Resource recurso = null;
-
         try {
-            recurso = new UrlResource(rutaArchivo.toUri());
+            recurso = iUploadFileService.cargar(nombreFoto);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        if (!recurso.exists() && !recurso.isReadable()) {
-            throw new RuntimeException("Error no se pudo cargar la imagen " + nombreFoto);
+            log.error(e.getMessage());
         }
 
         HttpHeaders cabecera = new HttpHeaders();
