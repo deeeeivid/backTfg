@@ -2,6 +2,7 @@ package com.urjc.tfg.models.services;
 
 import com.urjc.tfg.models.dao.IClienteRepository;
 import com.urjc.tfg.models.entity.Cliente;
+import com.urjc.tfg.models.entity.Region;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,5 +49,11 @@ public class ClienteServiceImpl implements IClienteService {
         } else {
             throw new RuntimeException();
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Region> findAllRegiones() {
+        return iClienteRepository.findAllRegiones();
     }
 }

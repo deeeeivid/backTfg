@@ -2,6 +2,7 @@ package com.urjc.tfg.controllers;
 
 import com.urjc.tfg.models.dao.IClienteRepository;
 import com.urjc.tfg.models.entity.Cliente;
+import com.urjc.tfg.models.entity.Region;
 import com.urjc.tfg.models.services.IClienteService;
 import com.urjc.tfg.services.IUploadFileService;
 import jakarta.validation.Valid;
@@ -124,6 +125,7 @@ public class ClienteController {
             clienteActual.setApellido(cliente.getApellido());
             clienteActual.setEmail(cliente.getEmail());
             clienteActual.setCreateAt(cliente.getCreateAt());
+            clienteActual.setRegion(cliente.getRegion());
 
             clienteMod = iClienteRepository.save(clienteActual);
 
@@ -209,5 +211,10 @@ public class ClienteController {
 
         return new ResponseEntity<>(recurso, cabecera, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/clientes/regiones")
+    public List<Region> listarRegiones() {
+        return iClienteService.findAllRegiones();
     }
 }

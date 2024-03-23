@@ -1,6 +1,7 @@
 package com.urjc.tfg.models.services;
 
 import com.urjc.tfg.models.entity.Cliente;
+import com.urjc.tfg.models.entity.Region;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,5 +18,7 @@ public interface IClienteService {
     Cliente findById(Long id);
 
     void delete(Long id);
+
+    List<Region> findAllRegiones();
 
 }

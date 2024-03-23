@@ -1,19 +1,32 @@
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('David', 'Muñoz', 'david@hotmail.com', '2021-01-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Iván', 'Pérez', 'ivan@hotmail.com', '2022-02-20');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Victor', 'Aguilar', 'victor@hotmail.com', '2024-03-19');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Raquel', 'Trino', 'raquel@hotmail.com', '2024-04-18');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('María', 'Muñoz', 'maria@hotmail.com', '2024-05-15');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Pedro', 'López', 'pedro@hotmail.com', '2023-06-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Adrian', 'Macias', 'adri@hotmail.com', '2023-07-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Luis', 'Carlos', 'luis@hotmail.com', '2023-08-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Alicia', 'Ortega', 'alicia@hotmail.com', '2024-11-10');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Elena', 'Nieto', 'elena@hotmail.com', '2022-03-28');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Irene', 'Pastrana', 'irene@hotmail.com', '2021-02-09');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Sandra', 'López', 'san@hotmail.com', '2022-07-14');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Jesus', 'Rodri', 'jesus@hotmail.com', '2022-07-14');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Alberto', 'Fdez', 'afs@hotmail.com', '2022-07-01');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Oscar', 'López', 'oscar@hotmail.com', '2022-02-11');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Daniel', 'Sanz', 'sanz@hotmail.com', '2022-04-14');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Victorio', 'Matesta', 'mat@hotmail.com', '2022-05-02');
-INSERT INTO clientes (nombre, apellido, email, create_at) VALUES ('Carlos', 'Peña', 'peña@hotmail.com', '2022-08-13');
+INSERT INTO regiones (id, nombre) VALUES (1, 'Sudamérica');
+INSERT INTO regiones (id, nombre) VALUES (2, 'Centroamérica');
+INSERT INTO regiones (id, nombre) VALUES (3, 'Norteamérica');
+INSERT INTO regiones (id, nombre) VALUES (4, 'Europa');
+INSERT INTO regiones (id, nombre) VALUES (5, 'Asia');
+INSERT INTO regiones (id, nombre) VALUES (6, 'Africa');
+INSERT INTO regiones (id, nombre) VALUES (7, 'Oceanía');
+INSERT INTO regiones (id, nombre) VALUES (8, 'Antartida');
+
+
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('David', 'Muñoz', 'david@hotmail.com', '2021-01-01', 3);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Iván', 'Pérez', 'ivan@hotmail.com', '2022-02-20', 4);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Victor', 'Aguilar', 'victor@hotmail.com', '2024-03-19', 7);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Raquel', 'Trino', 'raquel@hotmail.com', '2024-04-18', 8);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('María', 'Muñoz', 'maria@hotmail.com', '2024-05-15', 2);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Pedro', 'López', 'pedro@hotmail.com', '2023-06-10', 1);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Adrian', 'Macias', 'adri@hotmail.com', '2023-07-10', 3);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Luis', 'Carlos', 'luis@hotmail.com', '2023-08-10', 4);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Alicia', 'Ortega', 'alicia@hotmail.com', '2024-11-10', 6);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Elena', 'Nieto', 'elena@hotmail.com', '2022-03-28', 7);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Irene', 'Pastrana', 'irene@hotmail.com', '2021-02-09', 5);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Sandra', 'López', 'san@hotmail.com', '2022-07-14', 2);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Jesus', 'Rodri', 'jesus@hotmail.com', '2022-07-14', 1);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Alberto', 'Fdez', 'afs@hotmail.com', '2022-07-01', 3);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Oscar', 'López', 'oscar@hotmail.com', '2022-02-11', 2);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Daniel', 'Sanz', 'sanz@hotmail.com', '2022-04-14', 7);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Victorio', 'Matesta', 'mat@hotmail.com', '2022-05-02', 6);
+INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Carlos', 'Peña', 'peña@hotmail.com', '2022-08-13', 3);
+
+
+
