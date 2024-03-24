@@ -3,7 +3,7 @@ package com.urjc.tfg.controllers;
 import com.urjc.tfg.models.dao.IClienteRepository;
 import com.urjc.tfg.models.entity.Cliente;
 import com.urjc.tfg.models.entity.Region;
-import com.urjc.tfg.models.services.IClienteService;
+import com.urjc.tfg.services.IClienteService;
 import com.urjc.tfg.services.IUploadFileService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -107,7 +107,7 @@ public class ClienteController {
 
         if (result.hasErrors()) {
             List<String> errors = result.getFieldErrors()
-                    .stream().map(err -> "El campo " + err.getField() + "' " + err.getDefaultMessage())
+                    .stream().map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
                     .collect(Collectors.toList());
 
             response.put("errors", errors);

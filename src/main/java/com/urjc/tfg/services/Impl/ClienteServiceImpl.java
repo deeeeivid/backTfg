@@ -1,9 +1,11 @@
-package com.urjc.tfg.models.services;
+package com.urjc.tfg.services.Impl;
 
 import com.urjc.tfg.models.dao.IClienteRepository;
+import com.urjc.tfg.models.dao.IRegionRepository;
 import com.urjc.tfg.models.entity.Cliente;
 import com.urjc.tfg.models.entity.Region;
-import lombok.AllArgsConstructor;
+import com.urjc.tfg.services.IClienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ClienteServiceImpl implements IClienteService {
 
-    private IClienteRepository iClienteRepository;
+    private final IClienteRepository iClienteRepository;
+    private final IRegionRepository iRegionRepository;
 
     @Override
     public List<Cliente> findAll() {
@@ -54,6 +57,6 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     @Transactional(readOnly = true)
     public List<Region> findAllRegiones() {
-        return iClienteRepository.findAllRegiones();
+        return iRegionRepository.findAllRegiones();
     }
 }
