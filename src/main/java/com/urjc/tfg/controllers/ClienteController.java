@@ -1,8 +1,8 @@
 package com.urjc.tfg.controllers;
 
-import com.urjc.tfg.models.dao.IClienteRepository;
 import com.urjc.tfg.models.entity.Cliente;
 import com.urjc.tfg.models.entity.Region;
+import com.urjc.tfg.models.repository.IClienteRepository;
 import com.urjc.tfg.services.IClienteService;
 import com.urjc.tfg.services.IUploadFileService;
 import jakarta.validation.Valid;

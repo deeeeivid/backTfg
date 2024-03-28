@@ -1,9 +1,9 @@
 package com.urjc.tfg.services.Impl;
 
-import com.urjc.tfg.models.dao.IClienteRepository;
-import com.urjc.tfg.models.dao.IRegionRepository;
 import com.urjc.tfg.models.entity.Cliente;
 import com.urjc.tfg.models.entity.Region;
+import com.urjc.tfg.models.repository.IClienteRepository;
+import com.urjc.tfg.models.repository.IRegionRepository;
 import com.urjc.tfg.services.IClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -57,6 +57,6 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     @Transactional(readOnly = true)
     public List<Region> findAllRegiones() {
-        return iRegionRepository.findAllRegiones();
+        return (List<Region>) iRegionRepository.findAll();
     }
 }
