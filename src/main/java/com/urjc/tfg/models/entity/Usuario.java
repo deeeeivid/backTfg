@@ -1,8 +1,9 @@
 package com.urjc.tfg.models.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serial;
@@ -12,7 +13,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
 
@@ -25,12 +27,15 @@ public class Usuario implements Serializable {
 
     @Column(unique = true, length = 20)
     private String username;
+
+//    @JsonIgnore
     @Column(length = 60)
     private String password;
+
     private Boolean enabled;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "autorizaciones",
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuarios_roles",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id"),
             uniqueConstraints = {
@@ -38,6 +43,5 @@ public class Usuario implements Serializable {
             }
     )
     private List<Rol> roles;
-
 
 }
