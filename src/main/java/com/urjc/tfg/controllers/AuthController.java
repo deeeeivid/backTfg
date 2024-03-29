@@ -2,9 +2,7 @@ package com.urjc.tfg.controllers;
 
 
 import com.urjc.tfg.models.dtos.AuthRequestDTO;
-import com.urjc.tfg.models.entity.Usuario;
 import com.urjc.tfg.services.Impl.JwtService;
-import com.urjc.tfg.services.Impl.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private UserInfoService service;
-
-    @Autowired
     private JwtService jwtService;
 
     @Autowired
@@ -31,10 +26,6 @@ public class AuthController {
         return "Welcome this endpoint is not secure";
     }
 
-    @PostMapping("/addNewUser")
-    public String addNewUser(@RequestBody Usuario userInfo) {
-        return service.addUser(userInfo);
-    }
 
     @GetMapping("/user/userProfile")
     @PreAuthorize("hasAuthority('ROLE_USER')")
