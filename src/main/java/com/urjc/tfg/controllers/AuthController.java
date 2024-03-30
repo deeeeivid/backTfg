@@ -2,6 +2,7 @@ package com.urjc.tfg.controllers;
 
 
 import com.urjc.tfg.models.dtos.AuthRequestDTO;
+import com.urjc.tfg.models.dtos.JwtResponseDTO;
 import com.urjc.tfg.services.Impl.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("auth")
 public class AuthController {
@@ -38,10 +40,10 @@ public class AuthController {
     }
 
     @PostMapping("/generateToken")
-    public String authenticateAndGetToken(@RequestBody AuthRequestDTO authRequest) {
+    public JwtResponseDTO authenticateAndGetToken(@RequestBody AuthRequestDTO authRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(authRequest.getUsername());
+            return JwtResponseDTO.builder().accessToken(jwtService.generateToken(authRequest.getUsername())).build();
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }
