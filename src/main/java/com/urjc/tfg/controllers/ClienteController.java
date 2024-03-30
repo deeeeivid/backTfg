@@ -48,7 +48,6 @@ public class ClienteController {
         return iClienteService.findAll(PageRequest.of(page, 4));
     }
 
-
     @GetMapping("/clientes/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
 
@@ -101,6 +100,7 @@ public class ClienteController {
     }
 
     @PutMapping("/clientes/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id) {
 
         Cliente clienteActual = iClienteService.findById(id);
@@ -143,6 +143,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/clientes/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
@@ -169,6 +170,7 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes/upload")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> upload(@RequestParam(value = "archivo") MultipartFile archivo, @RequestParam("id") Long id) {
         Map<String, Object> response = new HashMap<>();
 
@@ -216,6 +218,7 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes/regiones")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Region> listarRegiones() {
         return iClienteService.findAllRegiones();
     }
