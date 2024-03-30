@@ -25,7 +25,6 @@ public class AuthController {
         return "Welcome this endpoint is not secure";
     }
 
-
     @GetMapping("/user/userProfile")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String userProfile() {

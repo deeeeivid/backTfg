@@ -28,11 +28,18 @@ public class Usuario implements Serializable {
     @Column(unique = true, length = 20)
     private String username;
 
-//    @JsonIgnore
+    //    @JsonIgnore
     @Column(length = 60)
     private String password;
 
     private Boolean enabled;
+
+    private String nombre;
+
+    private String apellido;
+
+    @Column(unique = true)
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuarios_roles",
