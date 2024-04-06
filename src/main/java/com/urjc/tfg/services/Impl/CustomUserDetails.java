@@ -12,12 +12,12 @@ import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
 
-    private final String name;
+    private final String username;
     private final String password;
     private final List<GrantedAuthority> authorities;
 
     public CustomUserDetails(Usuario userInfo) {
-        name = userInfo.getUsername();
+        username = userInfo.getUsername();
         password = userInfo.getPassword();
         List<GrantedAuthority> auths = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return username;
     }
 
     @Override
