@@ -33,7 +33,7 @@ INSERT INTO roles (nombre) VALUES ('ROLE_USER');
 INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
 
 INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('David','$2a$10$9PFNOc/LWDB6ylGLx1RYtOAi5tPDS/EtK40iokjhS1VZZEjZCduGS', 1, 'David', 'Munoz', 'david@hotmail.com');
-INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('ADMIN','$2a$10$9PFNOc/LWDB6ylGLx1RYtOAi5tPDS/EtK40iokjhS1VZZEjZCduGS', 1, 'Admin', 'Admin', 'admin@hotmail.com');
+INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('Admin','$2a$10$9PFNOc/LWDB6ylGLx1RYtOAi5tPDS/EtK40iokjhS1VZZEjZCduGS', 1, 'Admin', 'Admin', 'admin@hotmail.com');
 
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1,1);
 -- INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1,2);

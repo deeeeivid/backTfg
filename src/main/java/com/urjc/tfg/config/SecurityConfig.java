@@ -47,6 +47,8 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests().requestMatchers("/auth/user/**", "/auth/admin/**").authenticated()
                 .and()
+                .authorizeHttpRequests().requestMatchers("/user/obtener").authenticated()
+                .and()
                 .authorizeHttpRequests().requestMatchers("/api/clientes/{id}").authenticated()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/clientes/**").authenticated()
