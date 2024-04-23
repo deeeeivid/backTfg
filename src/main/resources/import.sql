@@ -40,5 +40,11 @@ INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1,1);
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (2,1);
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (2,2);
 
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Panasonic', 100, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('LG', 200, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Samsung', 300, NOW());
 
+INSERT INTO facturas (descripcion, observacion, cliente_id, create_at) VALUES ('Factura equipos de oficina', null, 1, NOW());
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (1, 1, 1);
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (1, 1, 2);
 
