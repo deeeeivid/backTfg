@@ -12,6 +12,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -52,4 +53,6 @@ public class Cliente implements Serializable {
     @JoinColumn(name = "region_id")
     private Region region;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Factura> facturas;
 }
