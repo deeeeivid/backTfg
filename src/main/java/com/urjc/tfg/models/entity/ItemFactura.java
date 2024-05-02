@@ -29,8 +29,8 @@ public class ItemFactura implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Producto producto;
 
-
     public Double getImporte() {
         return this.cantidad.doubleValue() * producto.getPrecio();
     }
+
 }
