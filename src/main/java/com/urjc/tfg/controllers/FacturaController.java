@@ -28,6 +28,12 @@ public class FacturaController {
         return ResponseEntity.ok(facturaService.findById(id));
     }
 
+    @PostMapping("/facturas")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Factura crear(@RequestBody Factura factura) {
+        return facturaService.save(factura);
+    }
+
     @DeleteMapping("/facturas/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
@@ -35,9 +41,9 @@ public class FacturaController {
     }
 
     @GetMapping("/facturas/filtrar-productos/{nombre}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Producto> filtrarProductos(@PathVariable String nombre) {
         return productoService.findByNombre(nombre);
     }
-
 
 }
