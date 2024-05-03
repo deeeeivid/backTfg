@@ -45,7 +45,7 @@ public class ClienteController {
 
     @GetMapping("/clientes/page/{page}")
     public Page<Cliente> index(@PathVariable Integer page) {
-        return iClienteService.findAll(PageRequest.of(page, 4));
+        return iClienteService.findAll(PageRequest.of(page, 5));
     }
 
     @GetMapping("/clientes/{id}")

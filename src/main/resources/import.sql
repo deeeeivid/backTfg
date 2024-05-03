@@ -40,11 +40,11 @@ INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1,1);
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (2,1);
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (2,2);
 
-INSERT INTO productos (nombre, precio, create_at) VALUES ('Panasonic', 100, NOW());
-INSERT INTO productos (nombre, precio, create_at) VALUES ('LG', 200, NOW());
-INSERT INTO productos (nombre, precio, create_at) VALUES ('Samsung', 300, NOW());
-INSERT INTO productos (nombre, precio, create_at) VALUES ('Jota', 400, NOW());
-INSERT INTO productos (nombre, precio, create_at) VALUES ('Pana', 500, NOW());
-INSERT INTO productos (nombre, precio, create_at) VALUES ('Nokia', 600, NOW());
-INSERT INTO productos (nombre, precio, create_at) VALUES ('Apple', 700, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Mesa Pioneer Rx3', 1900, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Soporte Mesa', 100, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Luces Led Apoyo', 300, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Altavoz Mackie 15', 400, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Cable XLR', 30, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('MacBook', 500, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Micro X', 100, NOW());
 
