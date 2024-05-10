@@ -1,4 +1,4 @@
-package com.urjc.tfg.services.Impl;
+package com.urjc.tfg.services.impl;
 
 import com.urjc.tfg.services.IUploadFileService;
 import org.slf4j.Logger;
@@ -20,8 +20,8 @@ import java.util.UUID;
 public class UploadFileServiceImpl implements IUploadFileService {
 
     private final Logger log = LoggerFactory.getLogger(UploadFileServiceImpl.class);
-    private final static String PATH_UPLOADS = "C:\\Users\\david\\IdeaProjects\\spring\\backTfg\\src\\main\\resources\\uploads";
-    private final static String PATH_IMAGES = "C:\\Users\\david\\IdeaProjects\\spring\\backTfg\\src\\main\\resources\\static\\images";
+    private static final String PATH_UPLOADS = "C:\\Users\\david\\IdeaProjects\\spring\\backTfg\\src\\main\\resources\\uploads";
+    private static final String PATH_IMAGES = "C:\\Users\\david\\IdeaProjects\\spring\\backTfg\\src\\main\\resources\\static\\images";
 
     @Override
     public Resource cargar(String nombreFoto) throws MalformedURLException {

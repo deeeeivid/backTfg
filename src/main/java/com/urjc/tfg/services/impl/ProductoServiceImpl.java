@@ -1,4 +1,4 @@
-package com.urjc.tfg.services.Impl;
+package com.urjc.tfg.services.impl;
 
 import com.urjc.tfg.models.entity.Producto;
 import com.urjc.tfg.models.repository.IProductoRepository;

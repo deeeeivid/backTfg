@@ -3,7 +3,7 @@ package com.urjc.tfg.controllers;
 
 import com.urjc.tfg.models.dtos.AuthRequestDTO;
 import com.urjc.tfg.models.dtos.JwtResponseDTO;
-import com.urjc.tfg.services.Impl.JwtService;
+import com.urjc.tfg.services.impl.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,7 +1,7 @@
 package com.urjc.tfg.models.filters;
 
-import com.urjc.tfg.services.Impl.JwtService;
-import com.urjc.tfg.services.Impl.UserInfoService;
+import com.urjc.tfg.services.impl.JwtService;
+import com.urjc.tfg.services.impl.UserInfoService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
