@@ -7,6 +7,37 @@ INSERT INTO regiones (id, nombre) VALUES (6, 'Africa');
 INSERT INTO regiones (id, nombre) VALUES (7, 'Oceanía');
 INSERT INTO regiones (id, nombre) VALUES (8, 'Antartida');
 
+INSERT INTO tipo_eventos (id, nombre) VALUES (1, 'Discoteca');
+INSERT INTO tipo_eventos (id, nombre) VALUES (2, 'Boda');
+INSERT INTO tipo_eventos (id, nombre) VALUES (3, 'Bautizo');
+INSERT INTO tipo_eventos (id, nombre) VALUES (4, 'Comunion');
+INSERT INTO tipo_eventos (id, nombre) VALUES (5, 'Despedida de Solteros');
+INSERT INTO tipo_eventos (id, nombre) VALUES (6, 'Fiesta de Empresa');
+INSERT INTO tipo_eventos (id, nombre) VALUES (7, 'Restaurante');
+INSERT INTO tipo_eventos (id, nombre) VALUES (8, 'Cumpleaños');
+INSERT INTO tipo_eventos (id, nombre) VALUES (9, 'Verbenas');
+
+INSERT INTO generos_musicales (id, nombre) VALUES (1, 'Reggaeton');
+INSERT INTO generos_musicales (id, nombre) VALUES (2, 'Techno');
+INSERT INTO generos_musicales (id, nombre) VALUES (3, 'Comercial');
+INSERT INTO generos_musicales (id, nombre) VALUES (4, 'Pop');
+INSERT INTO generos_musicales (id, nombre) VALUES (5, 'Pachangueo');
+INSERT INTO generos_musicales (id, nombre) VALUES (6, 'Remember');
+INSERT INTO generos_musicales (id, nombre) VALUES (7, 'Hard Techno');
+INSERT INTO generos_musicales (id, nombre) VALUES (8, 'Años 80');
+INSERT INTO generos_musicales (id, nombre) VALUES (9, 'Rock');
+INSERT INTO generos_musicales (id, nombre) VALUES (10, 'Indie');
+INSERT INTO generos_musicales (id, nombre) VALUES (11, 'Chill Out');
+
+INSERT INTO rango_edades (id, nombre) VALUES (1, '0 - 13 años');
+INSERT INTO rango_edades (id, nombre) VALUES (2, '14 - 17 años');
+INSERT INTO rango_edades (id, nombre) VALUES (3, '18 - 23 años');
+INSERT INTO rango_edades (id, nombre) VALUES (4, '24 - 32 años');
+INSERT INTO rango_edades (id, nombre) VALUES (5, '33 - 45 años');
+INSERT INTO rango_edades (id, nombre) VALUES (6, '45 - 55 años');
+INSERT INTO rango_edades (id, nombre) VALUES (7, '55 - 70 años');
+INSERT INTO rango_edades (id, nombre) VALUES (8, '70 - 90 años');
+
 
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('David', 'Muñoz', 'david@hotmail.com', '2021-01-01', 3);
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Iván', 'Pérez', 'ivan@hotmail.com', '2022-02-20', 4);
@@ -27,6 +58,13 @@ INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Os
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Daniel', 'Sanz', 'sanz@hotmail.com', '2022-04-14', 7);
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Victorio', 'Matesta', 'mat@hotmail.com', '2022-05-02', 6);
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Carlos', 'Peña', 'peña@hotmail.com', '2022-08-13', 3);
+
+-- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
+-- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
+-- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
+-- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
+-- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
+
 
 
 INSERT INTO roles (nombre) VALUES ('ROLE_USER');
