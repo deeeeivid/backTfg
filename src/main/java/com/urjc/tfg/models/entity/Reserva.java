@@ -13,7 +13,6 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -46,6 +45,8 @@ public class Reserva implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaEvento;
 
+    private String ubicacion;
+
     private String observacion;
 
     @NotNull
@@ -53,20 +54,14 @@ public class Reserva implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoEvento tipoEvento;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JoinTable(
-            name = "reservas_generos_musicales",
-            joinColumns = @JoinColumn(name = "reservas_id"),
-            inverseJoinColumns = @JoinColumn(name = "generos_musicales_id"))
-    private List<GeneroMusical> generosMusicales;
+    private GeneroMusical generoMusical;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JoinTable(
-            name = "reservas_rango_edades",
-            joinColumns = @JoinColumn(name = "reservas_id"),
-            inverseJoinColumns = @JoinColumn(name = "rango_edades_id"))
-    private List<RangoEdad> rangoEdades;
+    private RangoEdad rangoEdad;
 
 }

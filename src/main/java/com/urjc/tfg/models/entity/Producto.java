@@ -29,7 +29,7 @@ public class Producto implements Serializable {
 
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
-    private Date createAt;
+    private Date fechaAlta;
 
 
 }

@@ -27,7 +27,7 @@ public class GeneroMusical implements Serializable {
     private String nombre;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "generosMusicales")
+    @OneToMany(mappedBy = "generoMusical", cascade = CascadeType.ALL)
     private List<Reserva> reservas;
 
 }

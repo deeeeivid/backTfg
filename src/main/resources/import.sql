@@ -59,12 +59,12 @@ INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Da
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Victorio', 'Matesta', 'mat@hotmail.com', '2022-05-02', 6);
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Carlos', 'Peña', 'peña@hotmail.com', '2022-08-13', 3);
 
--- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
--- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
--- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
--- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
--- INSERT INTO reservas (nombre, apellido, email, fechaEvento, observacion, tipoEvento_id, generoMusical_id, rangoEdad_id) VALUES('Iñaki', 'López', 'iñaki@hotmail.com', '2022-09-14', 4);
 
+INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Iñaki', 'López', 'iñaki@hotmail.com', '2021-09-14', 'Mirasierra', 'Restaurante de lujo',1, 3, 4);
+INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('David', 'López', 'david@hotmail.com', '2023-11-12', 'Mirasierra', 'Restaurante de lujo',2, 2, 5);
+INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Pedro', 'Muñoz', 'pedro@hotmail.com', '2022-09-06', 'Mirasierra', 'Restaurante de lujo',4, 2 ,3);
+INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Maria', 'Sevilla', 'maria@hotmail.com', '2022-09-14', 'Mirasierra', 'Restaurante de lujo',3, 1, 7);
+INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Luisa', 'Nieta', 'luisa@hotmail.com', '2020-09-09', 'Mirasierra', 'Restaurante de lujo',5, 1, 3);
 
 
 INSERT INTO roles (nombre) VALUES ('ROLE_USER');

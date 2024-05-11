@@ -31,7 +31,7 @@ public class Factura implements Serializable {
 
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
-    private Date createAt;
+    private Date fechaAlta;
 
 
     @JsonIgnoreProperties(value = {"facturas", "hibernateLazyInitializer", "handler"}, allowSetters = true)
@@ -45,7 +45,7 @@ public class Factura implements Serializable {
 
     @PrePersist
     public void prePersist() {
-        this.createAt = new Date();
+        this.fechaAlta = new Date();
     }
 
     public Double getTotal() {
