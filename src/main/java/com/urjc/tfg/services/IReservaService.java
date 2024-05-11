@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IReservaService {
 
-    Reserva save(Reserva reserva);
+    Reserva guardar(Reserva reserva);
 
     List<TipoEvento> findAllTiposEventos();
 

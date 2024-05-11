@@ -24,22 +24,22 @@ public class ReservaController {
     private IReservaService iReservaService;
 
     @PostMapping("/reservas")
-    public ResponseEntity<Reserva> create(@Valid @RequestBody Reserva reserva) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(iReservaService.save(reserva));
+    public ResponseEntity<Reserva> crear(@Valid @RequestBody Reserva reserva) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iReservaService.guardar(reserva));
     }
 
     @GetMapping("/reservas/tipos-eventos")
-    public List<TipoEvento> listarTiposEventos() {
-        return iReservaService.findAllTiposEventos();
+    public ResponseEntity<List<TipoEvento>> listarTiposEventos() {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iReservaService.findAllTiposEventos());
     }
 
     @GetMapping("/reservas/generos-musicales")
-    public List<GeneroMusical> listarGenerosMusicales() {
-        return iReservaService.findAllGenerosMusicales();
+    public ResponseEntity<List<GeneroMusical>> listarGenerosMusicales() {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iReservaService.findAllGenerosMusicales());
     }
 
     @GetMapping("/reservas/rango-edades")
-    public List<RangoEdad> listarRangoEdades() {
-        return iReservaService.findAllRangoEdades();
+    public ResponseEntity<List<RangoEdad>> listarRangoEdades() {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iReservaService.findAllRangoEdades());
     }
 }

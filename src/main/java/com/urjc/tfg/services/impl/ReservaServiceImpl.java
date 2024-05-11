@@ -26,7 +26,7 @@ public class ReservaServiceImpl implements IReservaService {
 
     @Override
     @Transactional
-    public Reserva save(Reserva reserva) {
+    public Reserva guardar(Reserva reserva) {
         return iReservaRepository.save(reserva);
     }
 

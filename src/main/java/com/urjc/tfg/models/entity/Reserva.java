@@ -13,6 +13,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -52,14 +53,20 @@ public class Reserva implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoEvento tipoEvento;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private GeneroMusical generoMusical;
+    @JoinTable(
+            name = "reservas_generos_musicales",
+            joinColumns = @JoinColumn(name = "reservas_id"),
+            inverseJoinColumns = @JoinColumn(name = "generos_musicales_id"))
+    private List<GeneroMusical> generosMusicales;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private RangoEdad rangoEdad;
+    @JoinTable(
+            name = "reservas_rango_edades",
+            joinColumns = @JoinColumn(name = "reservas_id"),
+            inverseJoinColumns = @JoinColumn(name = "rango_edades_id"))
+    private List<RangoEdad> rangoEdades;
 
 }
