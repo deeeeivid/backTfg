@@ -1,6 +1,7 @@
 package com.urjc.tfg.controllers;
 
-import com.urjc.tfg.models.entity.*;
+import com.urjc.tfg.models.entity.Reserva;
+import com.urjc.tfg.models.entity.ReservaPendiente;
 import com.urjc.tfg.services.IReservaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -11,13 +12,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -40,7 +39,7 @@ public class ReservaController {
     }
 
     @GetMapping("/reservas/{id}")
-    public ResponseEntity<?> show(@PathVariable Long id) {
+    public ResponseEntity<?> ver(@PathVariable Long id) {
 
         Reserva reserva;
         Map<String, Object> response = new HashMap<>();
@@ -62,36 +61,15 @@ public class ReservaController {
     }
 
     @PostMapping("/reservas")
-    public ResponseEntity<?> crear(@Valid @RequestBody Reserva reserva, BindingResult result) {
-        Reserva reservaNueva;
-        Map<String, Object> response = new HashMap<>();
-
-        if (result.hasErrors()) {
-            List<String> errors = result.getFieldErrors()
-                    .stream().map(err -> " El campo '" + err.getField() + "' " + err.getDefaultMessage())
-                    .collect(Collectors.toList());
-
-            response.put("errors", errors);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
-
-        try {
-            reservaNueva = iReservaService.guardar(reserva);
-
-        } catch (DataAccessException e) {
-            response.put("mensaje", "Error al realizar el insert en la bbdd");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        response.put("mensaje", "La reserva se ha creado con éxito!");
-        response.put("cliente", reservaNueva);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Reserva> confirmar(@Valid @RequestBody ReservaPendiente reservaPendiente) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iReservaService.guardar(reservaPendiente));
     }
+
 
     @DeleteMapping("/reservas/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
         try {
@@ -111,18 +89,4 @@ public class ReservaController {
         }
     }
 
-    @GetMapping("/reservas/tipos-eventos")
-    public ResponseEntity<List<TipoEvento>> listarTiposEventos() {
-        return ResponseEntity.status(HttpStatus.OK).body(iReservaService.findAllTiposEventos());
-    }
-
-    @GetMapping("/reservas/generos-musicales")
-    public ResponseEntity<List<GeneroMusical>> listarGenerosMusicales() {
-        return ResponseEntity.status(HttpStatus.OK).body(iReservaService.findAllGenerosMusicales());
-    }
-
-    @GetMapping("/reservas/rango-edades")
-    public ResponseEntity<List<RangoEdad>> listarRangoEdades() {
-        return ResponseEntity.status(HttpStatus.OK).body(iReservaService.findAllRangoEdades());
-    }
 }

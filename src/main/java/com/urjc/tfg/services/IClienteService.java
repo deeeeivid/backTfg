@@ -13,9 +13,9 @@ public interface IClienteService {
 
     Page<Cliente> findAll(Pageable pageable);
 
-    Cliente save(Cliente cliente);
-
     Cliente findById(Long id);
+
+    Cliente save(Cliente cliente);
 
     void delete(Long id);
 

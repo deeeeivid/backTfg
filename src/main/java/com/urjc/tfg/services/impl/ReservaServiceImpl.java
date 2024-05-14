@@ -1,11 +1,10 @@
 package com.urjc.tfg.services.impl;
 
-import com.urjc.tfg.models.entity.*;
-import com.urjc.tfg.models.repository.IGeneroMusicalRepository;
-import com.urjc.tfg.models.repository.IRangoEdadRepository;
+import com.urjc.tfg.models.entity.Reserva;
+import com.urjc.tfg.models.entity.ReservaPendiente;
 import com.urjc.tfg.models.repository.IReservaRepository;
-import com.urjc.tfg.models.repository.ITipoEventoRepository;
 import com.urjc.tfg.services.IReservaService;
+import com.urjc.tfg.utils.mappers.ReservaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +18,7 @@ import java.util.List;
 public class ReservaServiceImpl implements IReservaService {
 
     private final IReservaRepository iReservaRepository;
-    private final ITipoEventoRepository iTipoEventoRepository;
-    private final IGeneroMusicalRepository iGeneroMusicalRepository;
-    private final IRangoEdadRepository iRangoEdadRepository;
+
 
     @Override
     public List<Reserva> findAll() {
@@ -42,7 +39,8 @@ public class ReservaServiceImpl implements IReservaService {
 
     @Override
     @Transactional
-    public Reserva guardar(Reserva reserva) {
+    public Reserva guardar(ReservaPendiente reservaPendiente) {
+        Reserva reserva = ReservaMapper.reservaPendienteToReserva(reservaPendiente);
         return iReservaRepository.save(reserva);
     }
 
@@ -57,21 +55,4 @@ public class ReservaServiceImpl implements IReservaService {
         }
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<TipoEvento> findAllTiposEventos() {
-        return (List<TipoEvento>) iTipoEventoRepository.findAll();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<GeneroMusical> findAllGenerosMusicales() {
-        return (List<GeneroMusical>) iGeneroMusicalRepository.findAll();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<RangoEdad> findAllRangoEdades() {
-        return (List<RangoEdad>) iRangoEdadRepository.findAll();
-    }
 }
