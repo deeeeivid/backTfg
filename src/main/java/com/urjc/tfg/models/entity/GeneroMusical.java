@@ -30,4 +30,8 @@ public class GeneroMusical implements Serializable {
     @OneToMany(mappedBy = "generoMusical", cascade = CascadeType.ALL)
     private List<Reserva> reservas;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "generoMusical", cascade = CascadeType.ALL)
+    private List<ReservaPendiente> reservasPendientes;
+
 }

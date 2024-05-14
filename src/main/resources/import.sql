@@ -60,7 +60,8 @@ INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Vi
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES ('Carlos', 'Peña', 'peña@hotmail.com', '2022-08-13', 3);
 
 
-INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Iñaki', 'López', 'iñaki@hotmail.com', '2021-09-14', 'Mirasierra', 'Restaurante de lujo',1, 3, 4);
+INSERT INTO reservas_pendientes ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Iñaki', 'López', 'iñaki@hotmail.com', '2021-09-14', 'Mirasierra', 'Restaurante de lujo',1, 3, 4);
+
 INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('David', 'López', 'david@hotmail.com', '2023-11-12', 'Mirasierra', 'Restaurante de lujo',2, 2, 5);
 INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Pedro', 'Muñoz', 'pedro@hotmail.com', '2022-09-06', 'Mirasierra', 'Restaurante de lujo',4, 2 ,3);
 INSERT INTO reservas ( nombre, apellido, email, fechaEvento, ubicacion, observacion, tipoEvento_id, generoMusical_id , rangoEdad_id) VALUES ('Maria', 'Sevilla', 'maria@hotmail.com', '2022-09-14', 'Mirasierra', 'Restaurante de lujo',3, 1, 7);
